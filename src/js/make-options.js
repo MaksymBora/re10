@@ -1,5 +1,5 @@
 import CatApiService from './cat-service';
-import { getAllIds } from './get-all-id';
+import { getAllIds } from './get-all-ids';
 import { showErrorFailure } from './notifications';
 
 const catApiService = new CatApiService();
