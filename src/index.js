@@ -23,6 +23,7 @@ function onSelectView() {
   if (isContent) {
     clearCatContainer();
   }
+
   // Show loading message
   showLoadingMessage();
 

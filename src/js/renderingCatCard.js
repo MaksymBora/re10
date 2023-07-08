@@ -9,10 +9,10 @@ export function renderingCatCard(arr) {
       const { description, temperament } = breeds[0];
       const markUp = `
     <img class="img-cat" src="${url}" width="440" height="400" loading="lazy">
-    <div class="intro">
+    	<div class="intro">
         <p class="cat-info"><b>Description: </b>${description}</p>
         <p class="cat-info"><b>Temperament: </b>${temperament}</p>
-      </div>
+      	</div>
   `;
 
       return markUp;
