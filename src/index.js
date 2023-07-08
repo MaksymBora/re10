@@ -4,8 +4,10 @@ import getOptions from './js/get-options';
 import { showError } from './js/notifications';
 import { clearCatContainer } from './js/clearcatcont';
 import { showLoadingMessage, hideLoadingMessage } from './js/loader';
+import CatApiService from './js/cat-service';
 
 const refs = getRefs();
+const catApiService = new CatApiService();
 
 refs.select.addEventListener('change', onSelectView);
 
@@ -14,7 +16,7 @@ getOptions();
 
 // Fetching object with chosen breed and create markup
 function onSelectView() {
-  const breedId = selectedBreeds();
+  catApiService.breedId = refs.select.value;
 
   const isContent = document.querySelector('.img-cat');
 
@@ -24,22 +26,14 @@ function onSelectView() {
   // Show loading message
   showLoadingMessage();
 
-  API.fetchCatByBreed(breedId)
+  catApiService
+    .fetchCatByBreed()
     .then(markUp)
     .catch(showError)
     .finally(hideLoadingMessage);
 
   // add is-active class for modal window
   refs.container.classList.add('is-active');
-}
-
-// Getting Breed from Select
-function selectedBreeds() {
-  const selectedValue = refs.select.options[refs.select.selectedIndex];
-
-  const selectedId = selectedValue.value;
-
-  return selectedId;
 }
 
 // Create Markup
