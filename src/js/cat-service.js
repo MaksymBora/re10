@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default class CatApiService {
   constructor() {
     this.API_KEY =
@@ -8,16 +10,15 @@ export default class CatApiService {
   fetchBreeds() {
     const url = `https://api.thecatapi.com/v1/breeds/`;
 
-    return fetch(url, {
-      headers: {
-        'x-api-key': this.API_KEY,
-      },
-    }).then(response => {
-      return response.json();
-    });
+    return axios
+      .get(url, {
+        headers: {
+          'x-api-key': this.API_KEY,
+        },
+      })
+      .then(response => response.data);
   }
 
-  // fetching cat by id(breed name)
   fetchCatByBreed() {
     const url = 'https://api.thecatapi.com/v1/images/search/';
 
@@ -26,7 +27,7 @@ export default class CatApiService {
       api_key: `${this.API_KEY}`,
     });
 
-    return fetch(`${url}?${options}`).then(response => response.json());
+    return axios.get(`${url}?${options}`).then(response => response.data);
   }
 
   get breed() {
